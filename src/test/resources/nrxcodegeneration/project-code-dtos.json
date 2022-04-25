@@ -1,0 +1,28 @@
+{
+  "VALID": {
+    "username": "Sam",
+    "projectName": "BTK",
+    "targetName": "BTK"
+  },
+  "VALID_DEL": {
+    "username": "Sam",
+    "projectName": "BTK",
+    "targetName": "BTK",
+    "projectCodeType": "DEL_APPENDED"
+  },
+  "INVALID_PROJECT_NAME": {
+    "username": "Sam",
+    "projectName": "invalid-project-name",
+    "targetName": "BTK"
+  },
+  "INVALID_TARGET_NAME": {
+    "username": "Sam",
+    "projectName": "BTK",
+    "targetName": "invalid-target-name"
+  },
+  "INVALID_USERNAME": {
+    "username": "invalid-username",
+    "projectName": "BTK",
+    "targetName": "BTK"
+  }
+}

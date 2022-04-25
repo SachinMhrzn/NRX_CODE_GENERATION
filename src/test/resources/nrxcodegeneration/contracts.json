@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "contract": "Gilead"
+  },
+  {
+    "id": "2",
+    "contract": "Sanofi"
+  },
+  {
+    "id": "3",
+    "contract": "no contract"
+  },
+  {
+    "id": "4",
+    "contract": "required"
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "projectCodeID": "1",
+    "projectCode": "ABC0001",
+    "projectPId": "1",
+    "personPId": "1",
+    "userPCode": "ABC0001",
+    "targetId": "1"
+  },
+  {
+    "projectCodeID": "2",
+    "projectCode": "P0002",
+    "projectPId": "2",
+    "personPId": "2",
+    "targetId": "2"
+  },
+  {
+    "projectCodeID": "3",
+    "projectCode": "ABC0003",
+    "userPCode": "ABC0003",
+    "projectPId": "3",
+    "personPId": "3",
+    "targetId": "3"
+  },
+  {
+    "projectCodeID": "4",
+    "projectCode": "P0004",
+    "projectPId": "4",
+    "personPId": "4",
+    "targetId": "4"
+  },
+  {
+    "projectCodeID": "5",
+    "projectCode": "DEL0010",
+    "projectPId": "5",
+    "personPId": "5",
+    "targetId": "5"
+  }
+]

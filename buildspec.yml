@@ -1,0 +1,43 @@
+
+version: 0.2
+env:
+  variables:
+    key: "value"
+  parameter-store:
+    ECR_REPOSITORY: "nurix-hs-ecr"
+
+phases:
+  install:
+    run-as: root
+    runtime-versions:
+      #java: openjdk11
+      docker: 18
+
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --no-include-email --registry-ids 489478819445)
+      - REPOSITORY_URI=$ECR_REPOSITORY
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - echo CODEBUILD_SRC_DIR - $CODEBUILD_SRC_DIR
+      - echo $GITBRANCH
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - pwd
+      - docker build --build-arg AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION --build-arg AWS_CONTAINER_CREDENTIALS_RELATIVE_URI=$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - $(aws ecr get-login --region=$AWS_DEFAULT_REGION --no-include-email)
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo "Create task file"
+      - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_DEFINITION_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinition.json
+artifacts:
+  files:
+    - imagedefinition.json

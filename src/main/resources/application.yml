@@ -1,0 +1,62 @@
+micronaut:
+  application:
+    name: delphiCRBackend
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:swagger
+        mapping: /swagger/**
+      swagger-ui:
+        paths: classpath:swagger
+        mapping: /swagger-ui/**
+  server:
+    port: 6565
+    maxRequestSize: 20MB
+    multipart:
+      maxFileSize: 20MB
+    cors:
+      enabled: true
+      configurations:
+        web:
+          allowedMethods:
+            - POST
+            - PUT
+            - PATCH
+            - GET
+            - DELETE
+    context-path: /api
+
+  http:
+    client:
+      connect-timeout: 10
+      read-timeout: 5
+  security:
+    enabled: true
+    interceptUrlMap:
+      - pattern: /swagger/**
+        httpMethod: GET
+        access:
+          - isAuthenticated()
+    endpoints:
+      login:
+        enabled: true
+      oauth:
+        enabled: true
+    token:
+      jwt:
+        enabled: true
+        generator:
+          refresh-token-expiration: 86400
+          access-token-expiration: 1800
+
+jackson:
+  bean-introspection-module: true
+jpa:
+  default:
+    packages-to-scan:
+      - 'delphi.backend'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+        show_sql: true

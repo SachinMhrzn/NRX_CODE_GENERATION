@@ -1,0 +1,45 @@
+{
+  "DEFAULT": {
+    "id": 1,
+    "program": "Nurix",
+    "contract": "no contract",
+    "concept": "Collaborator",
+    "variant": "intermediate",
+    "targetOne": "Mpro"
+  },
+  "DEL": {
+    "id": 2,
+    "delLineage": "NRX04W01.35086.36013.36219",
+    "targetOne": "KRAS",
+    "contract": "no contract",
+    "concept": "DEL ligand",
+    "variant": "monovalent assay compound",
+    "program": "Nurix"
+  },
+  "CTM": {
+    "id": 3,
+    "program": "Nurix",
+    "contract": "no contract",
+    "concept": "HTS",
+    "variant": "CTM",
+    "targetOne": "Mpro",
+    "targetTwo": "Mpro"
+  },
+  "TRACER": {
+    "id": 4,
+    "program": "Nurix",
+    "contract": "no contract",
+    "concept": "Collaborator",
+    "variant": "onDNA",
+    "targetOne": "Mpro",
+    "series": "Tracer"
+  },
+  "INHIBITOR": {
+    "id": 5,
+    "program": "Nurix",
+    "contract": "no contract",
+    "concept": "Commercial",
+    "variant": "monovalent assay compound",
+    "targetOne": "Mpro"
+  }
+}

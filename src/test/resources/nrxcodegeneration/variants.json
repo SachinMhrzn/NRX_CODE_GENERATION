@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "variant": "cleaved"
+  },
+  {
+    "id": "2",
+    "variant": "CTM"
+  },
+  {
+    "id": "3",
+    "variant": "intermediate"
+  },
+  {
+    "id": "4",
+    "variant": "monovalent assay compound"
+  },
+  {
+    "id": "5",
+    "variant": "onDNA"
+  }
+]

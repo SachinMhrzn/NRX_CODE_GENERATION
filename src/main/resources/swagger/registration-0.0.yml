@@ -1,0 +1,171 @@
+openapi: 3.0.1
+info:
+  title: Registration
+  description: APIs for Registration
+  version: "0.0"
+paths:
+  /v1/codes/project-code:
+    post:
+      tags:
+      - Nrx Code Generation
+      summary: Generates a project code for the given projectCodeDto.
+      description: Generates a project code for the given projectCodeDto.
+      operationId: generateProjectCode
+      parameters: []
+      requestBody:
+        description: The ProjectCodeDto object that contains the information needed
+          to generate a project code.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCodeDto'
+        required: true
+      responses:
+        default:
+          description: The generated project code.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Object'
+      security:
+      - BearerAuth: []
+  /v1/codes/project-codes:
+    post:
+      tags:
+      - Nrx Code Generation
+      summary: Generates project codes for the given list of projectCodeDto.
+      description: Generates project codes for the given list of projectCodeDto.
+      operationId: generateProjectCode
+      parameters: []
+      requestBody:
+        description: The List of ProjectCodeDto object that contains the information
+          needed to generate a project code.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProjectCodeDto'
+        required: true
+      responses:
+        default:
+          description: The generated project code in list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Object'
+      security:
+      - BearerAuth: []
+  /v1/codes/meta-codes:
+    post:
+      tags:
+      - Nrx Code Generation
+      summary: For a given list of metacodeDto, generate metacode for each metacodeDto
+        or add a message if it cannot be generated.
+      description: For a given list of metacodeDto, generate metacode for each metacodeDto
+        or add a message if it cannot be generated.
+      operationId: generateMetacodes
+      parameters: []
+      requestBody:
+        description: List of metacode dto for which metacode is to be generated.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/MetacodeDto'
+        required: true
+      responses:
+        default:
+          description: The list of generated Metacode.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Object'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    Object:
+      type: object
+    ProjectCodeDto:
+      required:
+      - projectName
+      - targetName
+      - username
+      type: object
+      properties:
+        username:
+          minLength: 1
+          type: string
+        projectName:
+          minLength: 1
+          type: string
+        targetName:
+          minLength: 1
+          type: string
+        userPCode:
+          type: string
+        projectCode:
+          type: string
+        projectCodeType:
+          $ref: '#/components/schemas/ProjectCodeType'
+        id:
+          type: integer
+          format: int64
+        message:
+          type: string
+    ProjectCodeType:
+      type: string
+      enum:
+      - NORMAL
+      - DEL_APPENDED
+    MetacodeDto:
+      required:
+      - concept
+      - contract
+      - delLineage
+      - program
+      - series
+      - targetOne
+      - targetTwo
+      - variant
+      type: object
+      properties:
+        metaCode:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        message:
+          type: string
+        program:
+          minLength: 1
+          type: string
+        contract:
+          minLength: 1
+          type: string
+        concept:
+          minLength: 1
+          type: string
+        variant:
+          minLength: 1
+          type: string
+        targetOne:
+          minLength: 1
+          type: string
+        targetTwo:
+          minLength: 1
+          type: string
+        series:
+          minLength: 1
+          type: string
+        delLineage:
+          minLength: 1
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: jwt
